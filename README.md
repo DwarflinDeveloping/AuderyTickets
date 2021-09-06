@@ -6,3 +6,11 @@ To specify which role can manage tickets, enter its name at `ticket_manager_role
 ## Step 2 – Set the token
 To start the bot, enter its token in line 261 at `bot.run`. You can find the token in your [Discord Developer Settings](https://discord.com/developers/applications/).
 ![Peek 2021-09-06 16-22](https://user-images.githubusercontent.com/74852537/132231327-36a958c8-e715-464a-9fe1-1ceeeb9144cb.gif)
+
+## Step 3 – Run the bot
+Now you just have to run the script. If you don't know how to do it, here is a tutorial on Linux devices:
+* Open the terminal
+* Go to the folder where `bot.py` is located
+* Execute `bot.py` with this command: `python3 bot.py`
+
+Have fun! 🙂
