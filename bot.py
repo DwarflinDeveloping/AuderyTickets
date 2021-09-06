@@ -11,7 +11,6 @@ from enum import Enum
 ticket_manager_role_name = "›› Developer ‹‹"
 
 
-
 class ReturnCodes(Enum):
     SUCCESS = 0
     ERROR = 1
@@ -59,8 +58,8 @@ async def close_cmd(ctx):
     if ctx.channel.category.name != "tickets":
         await ctx.send(
             embed=discord.Embed(
-                title=f"Kein Ticket",
-                description="Du befindest dich nicht in einem Ticket, oder es ist bereits geschlossen.",
+                title=f"No ticket",
+                description="You are not in a ticket, or it is already closed.",
                 colour=discord.Colour.dark_red()
             )
         )
@@ -70,8 +69,8 @@ async def close_cmd(ctx):
 
     await ctx.send(
         embed=discord.Embed(
-            title=f"Ticket geschlossen",
-            description=f"Das Ticket wurde von {ctx.author} geschlossen",
+            title=f"Ticket closed",
+            description=f"The ticket was closed by {ctx.author}.",
             colour=discord.Colour.dark_red()
         )
     )
@@ -85,8 +84,8 @@ async def assign_cmd(ctx, *args):
     if discord.utils.get(ctx.guild.roles, name=ticket_manager_role_name) not in ctx.author.roles:
         await ctx.send(
             embed=discord.Embed(
-                title="Fehlende Berechtigung",
-                description="Dir fehlt die Berechtigung, diesem Ticket ein Label zuzuweisen",
+                title="Missing permission",
+                description="You are not permitted to assign a user to this ticket",
                 colour=discord.Colour.dark_red()
             )
         )
@@ -95,8 +94,8 @@ async def assign_cmd(ctx, *args):
 
     await ctx.send(
         embed=discord.Embed(
-            title=f"Label hinzugefügt",
-            description=f"Diesem Ticket wurde das Label {label} zugewiesen",
+            title=f"Label added",
+            description=f"The label {label} has been added to this ticket",
             colour=discord.Colour.blue()
         )
     )
@@ -107,8 +106,8 @@ async def assign_cmd(ctx):
     if discord.utils.get(ctx.guild.roles, name=ticket_manager_role_name) not in ctx.author.roles:
         await ctx.send(
             embed=discord.Embed(
-                title="Fehlende Berechtigung",
-                description="Dir fehlt die Berechtigung, diesem Ticket einen Nutzer zuzuweisen",
+                title="Missing permission",
+                description="You are not permitted to assign a user to this ticket",
                 colour=discord.Colour.dark_red()
             )
         )
@@ -119,8 +118,8 @@ async def assign_cmd(ctx):
 
     await ctx.send(
         embed=discord.Embed(
-            title=f"Ticket zugewiesen",
-            description=f"Dein Anliegen wurde {assigned_user.mention} zugewiesen",
+            title=f"Ticket assigned",
+            description=f"Your ticket was assigned to {assigned_user.mention}",
             colour=discord.Colour.dark_green()
         )
     )
@@ -153,11 +152,11 @@ async def create_ticket(ctx, ticket_type=TicketTypes.TICKET):
 
     welcome_embed = discord.Embed(
         title=
-        f"{ticket_type_name} von {ctx.author.name}",
+        f"{ticket_type_name} by {ctx.author.name}",
         description=
         f"Thank you for contacting us, {ctx.author.mention}!\n"
         "We will handle your request as soon as possible.\n"
-        f"In this text channel, you can explain to us in detail what your problem is."
+        "In this text channel, you can explain to us in detail what your problem is."
     )
     welcome_message = await ticket_channel.send(
         embed=welcome_embed,
@@ -210,7 +209,7 @@ async def on_component(ctx):
     setup_process = await create_ticket(ctx, ticket_type=ticket_type)
     if setup_process == ReturnCodes.SUCCESS:
         await ctx.send(
-            "Ticket erfolgreich erstellt",
+            "Ticket successfully created",
             hidden=True
         )
 
